@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | Image Recognition Chatbot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body class="dashboard-page">
+  {% include 'navbar.html' %}
+
+  <main class="dashboard-shell">
+    <section class="dashboard-intro glass-panel">
+      <div>
+        <span class="eyebrow">Welcome</span>
+        <h1>Upload your image for AI analysis.</h1>
+        <p>Drop a photo, let Google Gemini analyze it, and review smart results in one place.</p>
+      </div>
+      <div class="dashboard-metrics">
+        <article>
+          <strong>2s</strong>
+          <span>Analysis time</span>
+        </article>
+        <article>
+          <strong>Secure</strong>
+          <span>Encrypted session</span>
+        </article>
+        <article>
+          <strong>Ultra</strong>
+          <span>Premium UX</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="upload-section glass-panel">
+      <div class="upload-panel">
+        <div>
+          <span class="eyebrow">AI Upload</span>
+          <h2>Smart image upload & preview</h2>
+          <p>Supported formats: JPG, JPEG, PNG, WEBP. Get results quickly with chatbot-style feedback.</p>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="notification-wrap">
+            {% for category, message in messages %}
+              <div class="notification {{ 'error-notice' if category == 'error' else 'success-notice' }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% endwith %}
+
+        <form class="upload-form" action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+          <div id="dropzone" class="upload-dropzone">
+            <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+            <p>Drag and drop your image here, or click to browse files.</p>
+            <input id="imageFile" name="imageFile" type="file" accept="image/png,image/jpeg,image/jpg,image/webp" />
+          </div>
+
+          <div class="preview-card glass-panel" id="previewCard">
+            <span class="preview-label">Image preview</span>
+            <div class="preview-content">
+              <img id="previewImage" src="" alt="Preview" />
+              <div class="preview-copy">
+                <strong>No image selected</strong>
+                <p>Choose a file above to preview the upload.</p>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Generate Analysis</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  {% include 'footer.html' %}
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

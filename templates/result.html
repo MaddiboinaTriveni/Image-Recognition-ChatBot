@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Result | Image Recognition Chatbot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body class="result-page">
+  {% include 'navbar.html' %}
+
+  <main class="result-shell">
+    <section class="result-card glass-panel">
+      <div class="result-header">
+        <div>
+          <span class="eyebrow">Analysis Complete</span>
+          <h1>Detected objects and AI insight</h1>
+          <p>Review the uploaded image, confidence details, and the AI explanation.</p>
+        </div>
+        <div class="result-cta-group">
+          <button id="copyResult" class="btn btn-secondary">Copy Result</button>
+          <button id="downloadPdf" class="btn btn-tertiary">Download PDF</button>
+          <a class="btn btn-primary" href="{{ url_for('dashboard') }}">Analyze Another Image</a>
+        </div>
+      </div>
+
+      <div class="result-grid">
+        <div class="result-visual glass-panel">
+          <img src="{{ image_url }}" alt="Uploaded image" />
+        </div>
+        <div class="result-summary">
+         <div class="summary-pill">
+    <span>Detected Object</span>
+    <strong>{{ object_name }}</strong>
+</div>
+
+<div class="summary-pill">
+    <span>Confidence</span>
+
+    {% if confidence == "High" %}
+        <strong style="color:#22c55e;">🟢 {{ confidence }}</strong>
+
+    {% elif confidence == "Medium" %}
+        <strong style="color:#facc15;">🟡 {{ confidence }}</strong>
+
+    {% else %}
+        <strong style="color:#ef4444;">🔴 {{ confidence }}</strong>
+
+    {% endif %}
+</div>
+          <div class="analysis-copy" id="analysisText">
+
+    <div class="info-section">
+        <h3>📂 Category</h3>
+        <p>{{ category }}</p>
+    </div>
+
+    <div class="info-section">
+        <h3>📝 Summary</h3>
+        <p>{{ summary }}</p>
+    </div>
+
+  <div class="info-section">
+    <h3>🎨 Dominant Colors</h3>
+
+    <div class="color-tags">
+        {% for color in colors.split(',') %}
+            <span class="tag">{{ color.strip() }}</span>
+        {% endfor %}
+    </div>
+
+</div>
+
+    <div class="info-section">
+        <h3>😊 Mood</h3>
+        <p>{{ mood }}</p>
+    </div>
+
+</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  {% include 'footer.html' %}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

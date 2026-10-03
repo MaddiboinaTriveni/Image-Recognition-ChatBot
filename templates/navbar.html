@@ -1,0 +1,26 @@
+<header class="site-navbar glass-panel">
+  <div class="brand-panel">
+    <a href="{{ url_for('home') }}" class="brand-link">
+      <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Image Recognition Chatbot logo" class="brand-icon" />
+      <span class="brand-title">Image Recognition Chatbot</span>
+    </a>
+  </div>
+
+  <nav class="site-menu">
+    <a href="{{ url_for('home') }}">Home</a>
+    <a href="{{ url_for('home') }}#features">Features</a>
+    <a href="{{ url_for('home') }}#how-it-works">How It Works</a>
+    <a href="{{ url_for('home') }}#about">About</a>
+    <a href="{{ url_for('home') }}#contact">Contact</a>
+    {% if session.get('logged_in') %}
+      <a href="{{ url_for('dashboard') }}" class="nav-cta">Dashboard</a>
+      <a href="{{ url_for('logout') }}" class="nav-cta">Logout</a>
+    {% else %}
+      <a href="{{ url_for('login') }}" class="nav-cta">Login</a>
+    {% endif %}
+  </nav>
+
+  <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">
+    <i class="fas fa-moon"></i>
+  </button>
+</header>

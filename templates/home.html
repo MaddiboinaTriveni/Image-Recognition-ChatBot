@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Recognition Chatbot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <div class="page-shell">
+    {% include 'navbar.html' %}
+
+    <main class="hero-section">
+      <div class="hero-copy">
+        <span class="eyebrow">Modern AI Vision</span>
+        <h1>Image Recognition Chatbot</h1>
+        <p>AI-powered image recognition using Google Gemini AI for confident object detection, secure analysis, and instant chatbot insights.</p>
+        <div class="hero-actions">
+          <a href="{{ url_for('login') }}" class="btn btn-primary">Login</a>
+          <a href="{{ url_for('home') }}#features" class="btn btn-secondary">Get Started</a>
+        </div>
+        <div class="hero-stat-panel glass-panel">
+          <div><strong>99.9%</strong><span>Secure processing</span></div>
+          <div><strong>2s</strong><span>Fast analysis</span></div>
+          <div><strong>24/7</strong><span>Smart AI support</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual glass-panel">
+        <img src="{{ url_for('static', filename='images/hero.svg') }}" alt="AI Illustration" />
+      </div>
+    </main>
+
+    <section id="features" class="section-block">
+      <div class="section-heading">
+        <span class="eyebrow">Core Features</span>
+        <h2>Premium AI vision capabilities for every workflow.</h2>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card glass-panel">
+          <div class="feature-icon"><i class="fas fa-image"></i></div>
+          <h3>Image Recognition</h3>
+          <p>Upload images and detect objects with premium AI accuracy.</p>
+        </article>
+        <article class="feature-card glass-panel">
+          <div class="feature-icon"><i class="fas fa-robot"></i></div>
+          <h3>AI Chatbot</h3>
+          <p>Ask questions about your uploaded images and receive smart responses.</p>
+        </article>
+        <article class="feature-card glass-panel">
+          <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+          <h3>Fast Analysis</h3>
+          <p>Receive detailed results in seconds with smooth loading feedback.</p>
+        </article>
+        <article class="feature-card glass-panel">
+          <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3>Secure</h3>
+          <p>Images are processed securely and stored only for session analysis.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="section-block section-alt">
+      <div class="section-heading">
+        <span class="eyebrow">How it works</span>
+        <h2>Turn image uploads into intelligent insights.</h2>
+      </div>
+      <div class="steps-grid">
+        <article class="step-card glass-panel">
+          <span class="step-number">1</span>
+          <h3>Login</h3>
+          <p>Sign in to access your AI dashboard and secure upload tools.</p>
+        </article>
+        <div class="step-connector"><i class="fas fa-arrow-right"></i></div>
+        <article class="step-card glass-panel">
+          <span class="step-number">2</span>
+          <h3>Upload Image</h3>
+          <p>Drag and drop or choose an image from your device.</p>
+        </article>
+        <div class="step-connector"><i class="fas fa-arrow-right"></i></div>
+        <article class="step-card glass-panel">
+          <span class="step-number">3</span>
+          <h3>AI Recognition</h3>
+          <p>Google Gemini AI processes the scene and extracts key insights.</p>
+        </article>
+        <div class="step-connector"><i class="fas fa-arrow-right"></i></div>
+        <article class="step-card glass-panel">
+          <span class="step-number">4</span>
+          <h3>View Results</h3>
+          <p>Review detected objects, confidence scores, and chatbot explanations.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="section-block">
+      <div class="section-heading">
+        <span class="eyebrow">About the project</span>
+        <h2>Built with modern AI and web tools for a professional user experience.</h2>
+      </div>
+      <div class="about-grid glass-panel">
+        <div>
+          <p>This project combines Python, Flask, HTML5, CSS3, JavaScript, and Google Gemini AI to deliver a responsive and premium interface for image recognition and chatbot interaction.</p>
+          <ul>
+            <li>Python & Flask backend</li>
+            <li>Responsive layout with glassmorphism</li>
+            <li>Real-time upload preview and AI feedback</li>
+            <li>Secure session-based dashboard</li>
+          </ul>
+        </div>
+        <div class="about-highlights">
+          <div><strong>Professional design</strong><span>With smooth animations and modern gradients.</span></div>
+          <div><strong>AI-first experience</strong><span>Designed for fast, confident image insight.</span></div>
+          <div><strong>Fully responsive</strong><span>Looks polished on desktop, tablet, and mobile.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section-block section-alt">
+      <div class="section-heading">
+        <span class="eyebrow">Contact</span>
+        <h2>Send us a quick message for any demo request.</h2>
+      </div>
+      <form class="contact-form glass-panel" method="post" action="mailto:hello@example.com">
+        <div class="form-row">
+          <label for="contactName">Name</label>
+          <input id="contactName" type="text" placeholder="Your name" required />
+        </div>
+        <div class="form-row">
+          <label for="contactEmail">Email</label>
+          <input id="contactEmail" type="email" placeholder="your@email.com" required />
+        </div>
+        <div class="form-row">
+          <label for="contactMessage">Message</label>
+          <textarea id="contactMessage" rows="5" placeholder="Hi, I'd like to learn more about Image Recognition Chatbot." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Message</button>
+      </form>
+    </section>
+
+    {% include 'footer.html' %}
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
